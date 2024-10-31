@@ -1,14 +1,20 @@
+import 'dart:developer';
+
+import 'package:chat_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   void loginUser() {
-    print('login successful!');
+    log('login successful!', name: 'elevatedButton log');
   }
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -21,18 +27,20 @@ class LoginPage extends StatelessWidget {
                 'Let\'s sign you in!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5),
+                  fontSize: 30,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
               ),
               Text(
                 'Welcome back! \n You\'ve been missed!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.blueGrey),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.blueGrey,
+                ),
               ),
               Image.network(
                 'https://3009709.youcanlearnit.net/Alien_LIL_131338.png',
@@ -45,11 +53,30 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
                   )),
               //TODO: Add the supporting text by final design
-              TextButton(
-                  onPressed: () {
-                    print('Pressed on the URL!');
-                  },
-                  child: Text('https://poojabhaumik.com'))
+              InkWell(
+                splashColor: ColorSelection.deepPurple.color,
+                onDoubleTap: () {
+                  log('Link double tapped', name: 'gestureDetector log');
+                },
+                onLongPress: () {
+                  log('Link long pressed', name: 'gestureDetector log');
+                },
+                onTap: () {
+                  // has onTap property which takes a callback function
+                  //navigate to browser
+                  log('Link tapped', name: 'gestureDetector log');
+                },
+                child: Column(
+                  children: [
+                    Text(
+                      'Find us on',
+                    ),
+                    Text(
+                      'https://poojabhaumik.com',
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
