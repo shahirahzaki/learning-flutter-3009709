@@ -1,6 +1,8 @@
 import 'package:chat_app/utils/spaces.dart';
 import 'package:chat_app/widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_buttons/social_media_button.dart';
+import 'package:social_media_buttons/social_media_buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
@@ -106,8 +108,24 @@ class LoginPage extends StatelessWidget {
                     Text(_mainUrl),
                   ],
                 ),
-              )
+              ),
               //TODO: Add Social media buttons here
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SocialMediaButton.twitter(
+                    url: "https://twitter.com/shrhzk",
+                    size: 35,
+                    color: Colors.deepPurpleAccent[200],
+                  ),
+                  SocialMediaButton.linkedin(
+                    url: "https://www.linkedin.com/in/poojab26/",
+                    size: 35,
+                    color: Colors.deepPurpleAccent[200],
+                  ),
+                ],
+              ),
             ],
           ),
         ),
