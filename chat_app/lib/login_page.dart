@@ -56,6 +56,9 @@ class LoginPage extends StatelessWidget {
                 'assets/illustration.png',
                 height: 200,
               ),
+              verticalSpacing(
+                24,
+              ),
               Form(
                 key: _formkey,
                 child: Column(
