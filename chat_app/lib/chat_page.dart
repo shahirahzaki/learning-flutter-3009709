@@ -16,7 +16,7 @@ class ChatPage extends StatelessWidget {
           IconButton(
               onPressed: () {
                 //TODO: Navigate back to LoginPage on logout
-
+                Navigator.pop(context);
                 print('Icon pressed!');
               },
               icon: Icon(Icons.logout))
