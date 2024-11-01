@@ -12,9 +12,12 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       title: "Chat App",
       theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          appBarTheme: AppBarTheme(
-              backgroundColor: Colors.blue, foregroundColor: Colors.black)),
+        primarySwatch: Colors.deepPurple,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.black,
+        ),
+      ),
       home: LoginPage(),
       routes: {'/chat': (context) => ChatPage()},
     );

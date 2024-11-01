@@ -2,11 +2,15 @@ import 'package:chat_app/utils/spaces.dart';
 import 'package:chat_app/utils/textfield_styles.dart';
 import 'package:chat_app/widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
   final _formkey = GlobalKey<FormState>();
+  final userNameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final _mainUrl = 'https://poojabhaumik.com';
 
   void loginUser(context) {
     if (_formkey.currentState != null && _formkey.currentState!.validate()) {
@@ -20,9 +24,6 @@ class LoginPage extends StatelessWidget {
       print('not successful!');
     }
   }
-
-  final userNameController = TextEditingController();
-  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -92,14 +93,19 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
                   )),
               GestureDetector(
-                onTap: () {
+                onTap: () async {
                   //todo: Navigate to browser
+
                   print('Link clicked!');
+
+                  if (!await launchUrl(Uri.parse(_mainUrl))) {
+                    throw Exception('Could not launch this URL');
+                  }
                 },
                 child: Column(
                   children: [
                     Text('Find us on'),
-                    Text('https://poojabhaumik.com'),
+                    Text(_mainUrl),
                   ],
                 ),
               )
