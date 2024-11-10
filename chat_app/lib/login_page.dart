@@ -1,3 +1,4 @@
+import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/utils/brand_color.dart';
 import 'package:chat_app/utils/spaces.dart';
 import 'package:chat_app/widgets/login_text_field.dart';
@@ -10,10 +11,12 @@ class LoginPage extends StatelessWidget {
 
   final _formkey = GlobalKey<FormState>();
 
-  void loginUser(context) {
+  Future<void> loginUser(context) async {
     if (_formkey.currentState != null && _formkey.currentState!.validate()) {
       print(userNameController.text);
       print(passwordController.text);
+
+      await context.read<AuthService>().loginUser(userNameController.text);
 
       Navigator.pushReplacementNamed(context, '/chat',
           arguments: '${userNameController.text}');
@@ -62,12 +65,11 @@ class LoginPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      fit: BoxFit.fitWidth,
+                        fit: BoxFit.fitWidth,
                         image: AssetImage('assets/illustration.png')),
                     borderRadius: BorderRadius.circular(24)),
               ),
               verticalSpacing(24),
-
               Form(
                 key: _formkey,
                 child: Column(
